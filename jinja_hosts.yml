@@ -1,0 +1,9 @@
+---
+ - name: Testing jinja templates
+   hosts: room3
+   tasks:
+     - name: 
+       template:
+          src: templates/hosts.j2
+          dest: /tmp/hosts
+

@@ -1,0 +1,17 @@
+ansible machine1.unnati.com -m setup -a 'filter="ansible_userspace_architecture"'
+ansible machine1.unnati.com -m setup -a 'filter="ansible_fqdn"  109  ansible all -m setup -a 'filter="ansible_fqdn"'
+ansible all -m setup -a 'filter="ansible_fqdn"'
+ansible all -m setup | grep mem
+ansible all -m setup -a 'filter="ansible_memory_mb"'
+ansible machine1.unnati.com -m setup -a 'filter="ansible_memfree_mb"'
+ansible machine2.unnati.com -m setup | grep ipv4
+ansible machine1.unnati.com -m setup -a 'filter="ansible_default_ipv4"'
+ansible machine1.unnati.com -m setup -a 'filter="ansible_architecture"'
+ansible machine1.unnati.com -m setup -a 'filter="ansible_os_family"'
+ansible machine1.unnati.com -m setup | grep distribution
+ansible machine1.unnati.com -m setup -a 'filter="ansible_distribution"'
+ansible machine1.unnati.com -m setup -a 'filter="ansible_distribution_major_version"'
+ansible machine1.unnati.com -m setup | grep ip
+ansible machine1.unnati.com -m setup -a 'filter= "ansible_default_ipv4"'
+ansible machine1.unnati.com -m setup -a 'filter="ansible_default_ipv4"'
+

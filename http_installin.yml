@@ -1,0 +1,13 @@
+---
+ - name: installing and configuring httpd
+   hosts: room2
+   become: yes
+   tasks:
+     - name: Installing htppd
+       yum: name=httpd state=latest
+
+     - name: Copy contents to Webpage
+       copy: content="<h1>Hello world!!...This is a test page.</h1>" dest="/var/www/html/index.html"
+
+     - name: Starting httpd service
+       service: name=httpd state=restarted enabled=yes

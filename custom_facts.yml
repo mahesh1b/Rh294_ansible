@@ -1,0 +1,30 @@
+---
+ - name: Assigning custom Facts
+   hosts: room1
+   become: yes
+   tasks:
+     - name: Creating directory /etc/ansible 
+       file: 
+         name: /etc/ansible
+         state: directory
+     - name: Creating directory /etc/ansible/facts.d
+       file: 
+         name: /etc/ansible/facts.d
+         state: directory
+     - name: copying custom1.fact to /etc/ansible/facts.d
+       copy:
+         src: custom1.fact
+         dest: /etc/ansible/facts.d
+       when: ansible_fqdn == "machine1.unnati.com"
+     - name: copying custom2.fact to /etc/ansible/facts.d
+       copy:
+         src: custom2.fact
+         dest: /etc/ansible/facts.d
+       when: ansible_fqdn == "machine2.unnati.com"
+
+
+
+
+
+# ansible room1 -m setup -a 'filter="ansible_local"'
+

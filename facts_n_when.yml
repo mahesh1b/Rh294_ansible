@@ -1,0 +1,14 @@
+---
+ - name: Allpying when condition with facts
+   hosts: room1
+   become: yes
+   gather_facts: yes
+   tasks:
+     - name: Task 1
+       debug:
+         msg: This is machine1
+       when: ansible_fqdn == "machine1.unnati.com"
+     - name: Task 2
+       debug:
+         msg: This is machine2
+       when: ansible_fqdn == "machine2.unnati.com"

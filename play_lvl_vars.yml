@@ -1,0 +1,26 @@
+---
+ - name: Play1
+   hosts: room2
+   become: yes
+   vars:
+     - var1: crond
+     - var2: data
+   tasks:
+     - name: Restarting Service {{ var1 }}
+       service: name={{ var1 }} state=restarted
+
+     - name: creating directory {{ var2 }}
+       file: name=~/{{ var2 }} state=directory
+
+ - name: Play2
+   hosts: room3
+   become: yes
+   vars:
+     - var1: crond
+   tasks:
+     - name: Printing MSG
+       debug: msg={{ var1 }}
+
+#GLOBAL/RUNTIME VARIABLES#
+#ansible-playbook -e var1=httpd -e var2=mydata play_lvl_vars.yml
+

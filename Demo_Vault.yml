@@ -1,0 +1,20 @@
+---
+ - name: using ansible vault to encrypt vars_file
+   hosts: room2
+   vars_files: 
+     - vault-file
+   become: yes
+   tasks:
+     - name: Calling var from file
+       debug: msg={{ var1 }}
+
+
+##########Vault-commands############### 
+#ansible-vault create file-name
+#ansible-vault edit file-name
+#ansible-vault view file-name
+#ansible-vault encrypt file-name
+#ansible-vault decrypt file-name
+#ansible-playbook testingVault.yaml --ask-vault-pass`
+#ansible-playbook testingVault.yaml --vault-password-file=mypass
+

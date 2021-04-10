@@ -1,0 +1,26 @@
+---
+ - name: USing variables 
+   hosts: room3
+   vars:
+     - package: vsftpd
+     - package1: ftp
+     - document_root: /var/ftp/pub
+     - service_port: 21/tcp
+     - service_name: ftp
+   become: yes
+   tasks: 
+     - name: install required packages
+       yum: name={{ package }} state=present
+
+     - name: starting ftp service
+       service: name={{ package }} state=restarted enabled=yes
+  
+     - name: content to share
+       copy: src=sample.txt dest={{ document_root }}
+
+     - name: adding port to firewall
+       firewalld: port={{ service_port }} permanent=yes immediate=yes state=enabled
+
+     - name: adding service to firewall
+       firewalld: service={{ service_name }} permanent=yes immediate=yes state=enabled
+

@@ -1,0 +1,13 @@
+---
+# handlers file for jenkins-conf
+ - name: t1
+   service: name="{{pack}}" state="{{s_state}}" enabled=yes
+
+ - name: t2
+   firewalld: service=jenkins permanent=yes state=enabled
+
+ - name: t3
+   firewalld: port=8080/tcp permanent=yes state=enabled
+
+ - name: t4
+   command: firewall-cmd --reload

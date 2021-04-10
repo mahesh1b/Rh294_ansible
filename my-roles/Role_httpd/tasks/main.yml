@@ -1,0 +1,8 @@
+---
+ - name: Installing {{ name }}
+   yum: 
+     name={{ name }} state=present
+ - name: Copying index file
+   copy:
+     src=/home/mahesh/index.html  des=/var/www/html/index.html
+   notify: restart_httpd

@@ -1,0 +1,9 @@
+---
+ - name: Testing jinja templates
+   hosts: room1
+   tasks:
+     - name: Copy contents to /tmp/sample.txt from template.
+       template:
+          src: templates/specs.j2
+          dest: /tmp/sample.txt
+

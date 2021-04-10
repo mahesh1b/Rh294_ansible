@@ -1,0 +1,11 @@
+---
+ - name: selinux
+   hosts: room3
+   become: yes
+   tasks:
+     - name: Ensure SELinux is set to permissive mode
+       lineinfile:
+         path: /etc/selinux/config
+         regexp: '^SELINUX='
+         line: SELINUX=permissive
+

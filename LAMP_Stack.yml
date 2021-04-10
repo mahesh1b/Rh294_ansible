@@ -1,0 +1,33 @@
+---
+ - name: LAMP Stack installation
+   hosts: room2 
+   become: yes
+   tasks:
+   - name: Installing apache web server
+     yum:
+      name: httpd
+      state: present
+
+   - name: Starting http service
+     service:
+      name: httpd
+      state: started
+      enabled: yes
+   
+   - name: Installing mariaDB(MYSQL)
+     yum:
+      name: 
+         - mariadb-server 
+         - mariadb
+      state: present
+
+   - name: Starting mariaDB service
+     service:
+      name: mariadb
+      state: started
+      enabled: yes
+    
+   - name: Installing php
+     yum:
+      name: php-fpm
+      state: present

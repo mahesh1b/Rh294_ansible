@@ -1,0 +1,24 @@
+---
+# tasks file for jenkins-conf
+ - name: Adding the jenkins repo
+   command: wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat/jenkins.repo
+
+ - name: Adding the rpm key
+   command: rpm --import http://pkg.jenkins.io/redhat/jenkins.io.key
+
+ - name: Installing jenkins
+   yum: name="{{pack}}" state="{{p_state}}"
+   notify: t1
+
+ - name: Installing java
+   yum: name="{{pack2}}" state=present
+
+ - name: Adding jenkins to firewall
+   firewalld: service=jenkins permanent=yes state=enabled
+
+ - name: Adding port 8080 to firewall
+   firewalld: port=8080/tcp permanent=yes state=enabled
+
+ - name: Reloading firewall
+   command: firewall-cmd --reload
+

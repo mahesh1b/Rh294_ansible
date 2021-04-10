@@ -1,0 +1,8 @@
+---
+# vars file for jenkins-conf
+ pack: jenkins
+ pack2: java
+ service: httpd
+ p_state: latest
+ s_state: started
+

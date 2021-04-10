@@ -1,0 +1,32 @@
+---
+ - name: installing and configuring httpd
+   hosts: room3
+   become: yes
+   tasks:
+     - name: Installing htppd
+       yum: name=httpd state=latest
+
+     - name: Replace none with AuthConfig
+       replace:
+        path: /etc/httpd/conf/httpd.conf
+        after: '#'
+        regexp: 'AllowOverride none'
+        replace: 'AllowOverride AuthConfig'
+
+     - name: Copy contents to Webpage
+       copy: content="<h1>Hello world!!...This is a test page.</h1>" dest="/var/www/html/index.html"
+
+     - name: Copy .htpasswd to /var/www/html
+       copy: src=/home/mahesh/CE_V8/authfiles/.htpasswd dest="/var/www/html/"
+
+     - name: Copy .htaccess to /var/www/html/
+       copy: src=/home/mahesh/CE_V8/authfiles/.htaccess dest="/var/www/html/"
+
+     - name: Adding http service to firewall
+       firewalld: service=http permanent=yes state=enabled
+
+     - name: Reloading firewall
+       command: firewall-cmd --reload
+
+     - name: Starting httpd service
+       service: name=httpd state=restarted enabled=yes

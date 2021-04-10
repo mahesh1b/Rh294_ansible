@@ -1,0 +1,7 @@
+---
+ - name: jenkins role
+   hosts: room2
+   become: yes
+   roles:
+    - jenkins-conf
+

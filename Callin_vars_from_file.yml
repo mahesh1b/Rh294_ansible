@@ -1,0 +1,15 @@
+---
+ - name: Calling variable from files
+   hosts: room2
+   become: yes
+   vars: 
+     var1: Play-lvl-var
+   vars_files:
+    - myvars.yml
+   tasks: 
+    - name: Calling play-lvl-var
+      debug: 
+        msg: "{{ var1 }}"
+    - name: Calling variable from file
+      debug: 
+        msg: "{{ var2 }}"

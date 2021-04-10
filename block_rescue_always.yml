@@ -1,0 +1,24 @@
+---
+ - name: Block, rescue & Always
+   hosts: room2
+   become: yes
+   tasks: 
+     - name: Task1
+       debug: msg="This is Task 1."
+  
+     - block:
+        - name: Task2
+          yum: name=trees state=present
+       rescue:
+        - name: Task2-rescue
+          yum: name=tree state=present
+       always:
+        - name: Always-block
+          debug: msg="This is always block."
+     
+     - name: Task3
+       debug: msg="This is Task 3"
+     
+
+
+

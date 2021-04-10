@@ -1,0 +1,17 @@
+---
+ - name: Play to check if file exists and dependant condition
+   hosts: room2
+   become: yes
+   tasks:
+     - name: Check the file exists
+       stat:
+         path: /tmp/newfile
+       register: result
+     - debug:
+         var: result
+     - name: Creating  conf.txt
+       file: 
+         path: /tmp/newfile
+         state: file
+       when: result.stat.exists == false
+

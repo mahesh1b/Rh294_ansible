@@ -1,0 +1,24 @@
+---
+ - name: Testing tags in playbook
+   hosts: room2
+   become: yes
+   tasks:
+    - name: Taks1
+      debug: msg="This is first task."
+
+    - name: Taks2
+      debug: msg="This is second task."
+      tags:
+       - t2
+    - name: Taks3
+      debug: msg="This is third task."
+
+    - name: Taks4
+      debug: msg="This is fourth task."
+      tags: 
+       - t4
+#ansible-playbook mytags.yaml --tags=red
+#ansible-playbook mytags.yaml --tags=red,blue
+#ansible-playbook mytags.yaml --skip-tags=red
+#ansible-playbook mytags.yaml --skip-tags=red,blue
+

@@ -1,0 +1,6 @@
+---
+ - name: Calling role to install httpd
+   hosts: room2
+   become: yes
+   roles:
+    - Role_httpd
