@@ -9,8 +9,9 @@
       ignore_warnings: yes
        host: smtp.gmail.com
        port: 587
-       username: mahesh22071999@gmail.com
+       username: demouser1@gmail.com
        password: "{{ p }}"
-       to: eren051999@gmail.com
+       to: demouser2@gmail.com
        subject: Sending an Email By Ansible.
        body: Test mail sent successfully.
+
