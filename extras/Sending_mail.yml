@@ -1,0 +1,16 @@
+---
+ - name: Ansible mail Demonstration
+   hosts: room3
+   vars_files: secret.yml
+   become: yes
+   tasks:
+    - name: Sending an email using Ansible.
+      mail:
+      ignore_warnings: yes
+       host: smtp.gmail.com
+       port: 587
+       username: mahesh22071999@gmail.com
+       password: "{{ p }}"
+       to: eren051999@gmail.com
+       subject: Sending an Email By Ansible.
+       body: Test mail sent successfully.
